@@ -4,7 +4,9 @@ function PopupWithForm(props) {
   return (
     <>
       <div
-        className={`popup popup_${props.name} ${props.isOpen && "popup_opened"}`}
+        className={`popup popup_${props.name} ${
+          props.isOpen && "popup_opened"
+        }`}
       >
         <div className="popup__container">
           <button
@@ -22,25 +24,5 @@ function PopupWithForm(props) {
     </>
   );
 }
-{/* <div class="popup popup_edit-avatar">
-  <div class="popup__container">
-    <button class="popup__close" type="button" aria-label="Закрыть"></button>
-    <form class="popup__form" name="formElement" novalidate>
-      <h2 class="popup__title">Обновить аватар</h2>
-      <label class="popup__form-field">
-        <input
-          class="popup__input popup__input_type_avatar"
-          placeholder="Аватар"
-          required
-          type="url"
-          name="avatarInput"
-        />
-        <span class="popup__input-error"></span>
-      </label>
-      <button class="popup__button" type="submit">
-        Сохранить
-      </button>
-    </form>
-  </div>
-</div>; */}
+
 export default PopupWithForm;

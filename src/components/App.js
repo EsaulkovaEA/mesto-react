@@ -47,6 +47,7 @@ function App() {
           name="popup_profile"
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          buttonText="Сохранить"
         >
           <label className="popup__form-field">
             <input
@@ -74,15 +75,13 @@ function App() {
             />
             <span className="popup__input-error" id="input-job-error"></span>
           </label>
-          <button className="popup__button" type="submit">
-            Сохранить
-          </button>
         </PopupWithForm>
         <PopupWithForm
           title="Обновить аватар"
           name="popup_edit-avatar"
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          buttonText="Сохранить"
         >
           <label className="popup__form-field">
             <input
@@ -94,15 +93,13 @@ function App() {
             />
             <span className="popup__input-error"></span>
           </label>
-          <button className="popup__button" type="submit">
-            Сохранить
-          </button>
         </PopupWithForm>
         <PopupWithForm
           title="Новое место"
           name="popup_add-place"
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
+          buttonText="Создать"
         >
           <label className="popup__form-field">
             <input
@@ -126,9 +123,6 @@ function App() {
             />
             <span className="popup__input-error"></span>
           </label>
-          <button className="popup__button" type="submit">
-            Создать
-          </button>
         </PopupWithForm>
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <Footer />

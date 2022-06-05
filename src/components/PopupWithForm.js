@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithForm({name,title,children,isOpen,onClose,buttonText}) {
+function PopupWithForm({name,title,children,isOpen,onClose,buttonText,onSubmit}) {
   return (
     <>
       <div
@@ -15,7 +15,7 @@ function PopupWithForm({name,title,children,isOpen,onClose,buttonText}) {
             aria-label="Закрыть"
             onClick={onClose}
           ></button>
-          <form className="popup__form" name={name} noValidate>
+          <form className="popup__form" name={name}  onSubmit={onSubmit} noValidate>
             <h2 className="popup__title">{title}</h2>
             {children}
             <button className="popup__button" type="submit">

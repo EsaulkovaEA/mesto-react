@@ -27,25 +27,25 @@ class Api {
   }
 
   //отправить отредактированные данные
-  editProfile(data) {
+  editProfile({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.nameInput,
-        about: data.jobInput,
+        name,
+        about,
       }),
     }).then(this._checkResponse);
   }
 
   //добавление карточки
-  addNewCard(data) {
+  addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.placeInput,
-        link: data.linkInput,
+        name,
+        link,
       }),
     }).then(this._checkResponse);
   }
@@ -79,9 +79,7 @@ class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        avatar: avatar.avatarInput,
-      }),
+      body: JSON.stringify(avatar),
     }).then(this._checkResponse);
   }
 }

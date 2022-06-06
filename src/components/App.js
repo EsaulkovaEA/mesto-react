@@ -22,6 +22,8 @@ function App() {
     id:"",
   });
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(null)
+  // const [isDeletePopup, setIsDeletePopup] = useState(null)
 
   useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getAllCards()])
@@ -55,6 +57,7 @@ function App() {
   };
 
   function handleUpdateUser(currentUser) {
+    setLoading("Сохранение...");
     api
       .editProfile(currentUser)
       .then((data) => {
@@ -64,21 +67,26 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(null));
   }
   function handleUpdateAvatar(avatar) {
+    setLoading("Сохранение...");
     api
       .editAvatar(avatar)
       .then((data) => {
         setCurrentUser(data);
         console.log(data);
+        debugger;
         closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(null));
   }
   function handleAddPlaceSubmit(name, link) {
+    setLoading("Создание...");
     api
       .addNewCard(name, link)
       .then((newCard) => {
@@ -87,7 +95,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(null));
   }
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -134,18 +143,21 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
+            loading={loading}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            loading={loading}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
+            loading={loading}
           />
-          {/* <PopupWithForm title="Вы уверены?" name="popup_delete-card" buttonText="Да" onClose={closeAllPopups}>
+          {/* <PopupWithForm title="Вы уверены?" name="popup_delete-card" buttonText="Да" isOpen={isDeletePopup} onClose={closeAllPopups} onSubmit={handleCardDelete}>
           </PopupWithForm> */}
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           <Footer />
